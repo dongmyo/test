@@ -1,0 +1,12 @@
+CREATE TABLE `ProjectMemberGroupSnapshotsTaskUsers` (
+  `project_member_group_snapshot_id` bigint(20) NOT NULL,
+    `task_id` bigint(20) NOT NULL,
+      `project_id` bigint(20) NOT NULL,
+        `organization_member_id` bigint(20) NOT NULL,
+	  `type` tinyint(4) NOT NULL,
+	    KEY `fk_ProjectMemberGroupSnapshotsTaskUsers_ProjectMemberGroupS_idx` (`project_member_group_snapshot_id`),
+	      KEY `fk_ProjectMemberGroupSnapshotsTaskUsers_ProjectMemberGroupS_idx1` (`task_id`),
+	        KEY `fk_ProjectMemberGroupSnapshotsTaskUsers_ProjectMemberGroupS_idx2` (`task_id`,`project_id`,`organization_member_id`),
+		  CONSTRAINT `fk_ProjectMemberGroupSnapshotsTaskUsers_ProjectMemberGroupSna2` FOREIGN KEY (`task_id`, `project_id`, `organization_member_id`) REFERENCES `TaskUsers` (`task_id`, `project_id`, `organization_member_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+		    CONSTRAINT `fk_ProjectMemberGroupSnapshotsTaskUsers_ProjectMemberGroupSna1` FOREIGN KEY (`project_member_group_snapshot_id`) REFERENCES `ProjectMemberGroupSnapshots` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+		    ) ENGINE=InnoDB DEFAULT CHARSET=latin1
